@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 
-class ReportPage extends StatefulWidget {
-  const ReportPage({Key? key}) : super(key: key);
+class Report extends StatefulWidget {
+  const Report({Key? key}) : super(key: key);
 
   @override
-  State<ReportPage> createState() => _ReportPageState();
+  State<Report> createState() => _ReportState();
 }
 
-class _ReportPageState extends State<ReportPage> {
+class _ReportState extends State<Report> {
   int _currentIndex = 2;
+  List navbar = ['home', 'discover', 'report', 'settings'];
   var date = [22, 23, 24, 25, 26, 27, 28];
   List weekday = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +21,7 @@ class _ReportPageState extends State<ReportPage> {
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
-          'REPORT',
+          'Report',
           style: TextStyle(
             fontSize: 23,
             color: Colors.black,
@@ -386,43 +388,6 @@ class _ReportPageState extends State<ReportPage> {
             )
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-        selectedItemColor: Colors.blue[900],
-        unselectedItemColor: Colors.grey,
-        selectedIconTheme: IconThemeData(color: Colors.blue[900]),
-        onTap: ((value) => setState(() {
-              _currentIndex = value;
-            })),
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.alarm,
-            ),
-            label: 'Training',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.compass_calibration,
-            ),
-            label: 'Discover',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.bar_chart_rounded,
-            ),
-            label: 'Report',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.person,
-            ),
-            label: 'Settings',
-          ),
-        ],
       ),
     );
   }

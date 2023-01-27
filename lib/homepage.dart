@@ -7,9 +7,8 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
-int _currentIndex = 0;
-
 class _HomeState extends State<Home> {
+  int _currentIndex = 0;
   static var time = DateTime.now();
   // var date = [
   //   time.day - 3,
@@ -51,6 +50,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    List navbar = ['home', 'discover', 'report', 'settings'];
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -303,47 +303,6 @@ class _HomeState extends State<Home> {
             ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.add),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-        selectedItemColor: Colors.blue[900],
-        unselectedItemColor: Colors.grey,
-        selectedIconTheme: IconThemeData(color: Colors.blue[900]),
-        onTap: ((value) => setState(() {
-              _currentIndex = value;
-            })),
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.alarm,
-            ),
-            label: 'Training',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.compass_calibration,
-            ),
-            label: 'Discover',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.bar_chart_rounded,
-            ),
-            label: 'Report',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.person,
-            ),
-            label: 'Settings',
-          ),
-        ],
       ),
     );
   }
