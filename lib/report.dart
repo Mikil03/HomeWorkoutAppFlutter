@@ -12,6 +12,125 @@ class _ReportState extends State<Report> {
   List navbar = ['home', 'discover', 'report', 'settings'];
   var date = [22, 23, 24, 25, 26, 27, 28];
   List weekday = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+  double _currentWeight = 70,
+      lightestWeight = 65,
+      heaviestWeight = 75,
+      _currentHeightIN = 11;
+  int _currentHeightFT = 5;
+
+  Widget EditPhysicalDetails() {
+    var _newWeight = TextEditingController();
+    var _newHeightFT = TextEditingController(),
+        _newHeightIN = TextEditingController();
+    return SimpleDialog(
+      contentPadding: EdgeInsets.all(15),
+      children: [
+        // Edit Weight
+        Text(
+          'Weight',
+          style: TextStyle(
+            fontSize: 25,
+          ),
+        ),
+        SizedBox(
+          height: 5,
+        ),
+        TextField(
+          keyboardType: TextInputType.number,
+          controller: _newWeight,
+          decoration: InputDecoration(
+            hintText: "50.0",
+          ),
+        ),
+        // Edit Height
+        SizedBox(
+          height: 20,
+        ),
+        Text(
+          'Height',
+          style: TextStyle(
+            fontSize: 25,
+          ),
+        ),
+        SizedBox(
+          height: 5,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            TextField(
+              keyboardType: TextInputType.number,
+              controller: _newHeightFT,
+              decoration: InputDecoration(
+                hintText: "5 FT",
+                constraints: BoxConstraints(
+                  maxWidth: MediaQuery.of(context).size.width / 3,
+                ),
+              ),
+            ),
+            TextField(
+              keyboardType: TextInputType.number,
+              controller: _newHeightIN,
+              decoration: InputDecoration(
+                hintText: "11.0 FT",
+                constraints: BoxConstraints(
+                  maxWidth: MediaQuery.of(context).size.width / 3,
+                ),
+              ),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 15,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  Navigator.of(context).pop();
+                });
+              },
+              child: Text(
+                'Cancel',
+                style: TextStyle(
+                  color: Colors.blue,
+                  fontSize: 18,
+                ),
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  if (_newWeight.text != "") {
+                    _currentWeight = double.parse(_newWeight.text);
+                    if (heaviestWeight < _currentWeight)
+                      heaviestWeight = _currentWeight;
+                    else if (lightestWeight > _currentWeight)
+                      lightestWeight = _currentWeight;
+                  }
+                  if (_newHeightFT.text != "")
+                    _currentHeightFT = int.parse(_newHeightFT.text);
+                  if (_newHeightIN.text != "")
+                    _currentHeightIN = double.parse(_newHeightIN.text);
+
+                  Navigator.of(context).pop();
+                });
+              },
+              child: Text(
+                'Save',
+                style: TextStyle(
+                  color: Colors.blue,
+                  fontSize: 18,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -204,10 +323,18 @@ class _ReportState extends State<Report> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Icon(
-                        Icons.add,
-                        color: Colors.blue,
-                        size: 30,
+                      GestureDetector(
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) => EditPhysicalDetails(),
+                          );
+                        },
+                        child: Icon(
+                          Icons.add,
+                          color: Colors.blue,
+                          size: 30,
+                        ),
                       ),
                     ],
                   ),
@@ -225,7 +352,7 @@ class _ReportState extends State<Report> {
                         ),
                       ),
                       Text(
-                        '70 kg',
+                        '$_currentWeight kg',
                         style: TextStyle(
                           color: Colors.grey[400],
                           fontSize: 18,
@@ -247,7 +374,7 @@ class _ReportState extends State<Report> {
                         ),
                       ),
                       Text(
-                        '75 kg',
+                        '$heaviestWeight kg',
                         style: TextStyle(
                           color: Colors.grey[400],
                           fontSize: 18,
@@ -269,7 +396,7 @@ class _ReportState extends State<Report> {
                         ),
                       ),
                       Text(
-                        '65 kg',
+                        '$lightestWeight kg',
                         style: TextStyle(
                           color: Colors.grey[400],
                           fontSize: 18,
@@ -304,12 +431,20 @@ class _ReportState extends State<Report> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Text(
-                        'EDIT',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue,
+                      GestureDetector(
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) => EditPhysicalDetails(),
+                          );
+                        },
+                        child: Text(
+                          'EDIT',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blue,
+                          ),
                         ),
                       ),
                     ],
@@ -348,12 +483,20 @@ class _ReportState extends State<Report> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Text(
-                        'EDIT',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue,
+                      GestureDetector(
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) => EditPhysicalDetails(),
+                          );
+                        },
+                        child: Text(
+                          'EDIT',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blue,
+                          ),
                         ),
                       ),
                     ],
@@ -372,7 +515,7 @@ class _ReportState extends State<Report> {
                         ),
                       ),
                       Text(
-                        '5 FT 11 IN',
+                        '$_currentHeightFT FT $_currentHeightIN IN',
                         style: TextStyle(
                           fontSize: 18,
                           color: Colors.grey[400],
