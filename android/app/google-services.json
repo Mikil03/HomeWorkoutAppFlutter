@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "952306170657",
+    "project_id": "homeworkoutapp-831bd",
+    "storage_bucket": "homeworkoutapp-831bd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:952306170657:android:d9644bd883a962b8565c60",
+        "android_client_info": {
+          "package_name": "com.mikil.home_workout_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "952306170657-lga1o56v9pls4mrjhcop24vv1nkd9aar.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5vymtQPtybVgi_TGTSKq3p6fgzolMSz8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "952306170657-lga1o56v9pls4mrjhcop24vv1nkd9aar.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

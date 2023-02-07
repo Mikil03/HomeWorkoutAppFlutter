@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:home_workout_app/discover.dart';
-import 'package:home_workout_app/homepage.dart';
-import 'package:home_workout_app/report.dart';
-import 'package:home_workout_app/setting.dart';
+import 'package:home_workout_app/screens/home/discover.dart';
+import 'package:home_workout_app/screens/home/homepage.dart';
+import 'package:home_workout_app/screens/home/report.dart';
+import 'package:home_workout_app/screens/home/setting.dart';
 
 void main() => runApp(
       MaterialApp(
