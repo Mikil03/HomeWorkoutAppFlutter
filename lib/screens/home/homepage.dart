@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:home_workout_app/screens/authenticate/auth.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -8,6 +9,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final _auth = AuthService();
   int _currentIndex = 0;
   static var time = DateTime.now();
   // var date = [
@@ -63,11 +65,24 @@ class _HomeState extends State<Home> {
         ),
         flexibleSpace: Container(
           decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [
-            Color.fromARGB(255, 113, 113, 251),
-            Color.fromARGB(236, 60, 60, 254)
-          ])),
+            gradient: LinearGradient(
+              colors: [
+                Color.fromARGB(255, 113, 113, 251),
+                Color.fromARGB(236, 60, 60, 254)
+              ],
+            ),
+          ),
         ),
+        actions: [
+          IconButton(
+            onPressed: () async {
+              _auth.signOut();
+            },
+            icon: Icon(
+              Icons.logout_outlined,
+            ),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(

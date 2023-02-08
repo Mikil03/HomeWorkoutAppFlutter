@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:home_workout_app/screens/authenticate/authenticate.dart';
 import './auth.dart';
 
-class SignIn extends StatefulWidget {
+class Register extends StatefulWidget {
   final Function toggleView;
-  SignIn({super.key, required this.toggleView});
+  Register({super.key, required this.toggleView});
+
   @override
-  State<SignIn> createState() => _SignInState();
+  State<Register> createState() => _RegisterState();
 }
 
-class _SignInState extends State<SignIn> {
+class _RegisterState extends State<Register> {
   final _auth = AuthService();
   String email = '';
   String password = '';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +25,7 @@ class _SignInState extends State<SignIn> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                'Sign in',
+                'Sign up',
                 style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.w400,
@@ -58,6 +57,9 @@ class _SignInState extends State<SignIn> {
                 ),
                 obscureText: true,
               ),
+              SizedBox(
+                height: 10,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -67,30 +69,22 @@ class _SignInState extends State<SignIn> {
                       widget.toggleView();
                     },
                     child: Text(
-                      'Create account',
+                      'Sign in instead',
                       style: TextStyle(
                         color: Colors.blue,
-                        fontSize: 15,
+                        fontSize: 16,
                       ),
                     ),
                   ),
-                  TextButton(
+                  ElevatedButton(
                     onPressed: () {},
-                    child: Text(
-                      'Forgot Password?',
-                      style: TextStyle(
-                        color: Colors.blue,
-                      ),
+                    child: Text('Register'),
+                    style: ElevatedButton.styleFrom(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                     ),
                   ),
                 ],
-              ),
-              ElevatedButton(
-                onPressed: () {},
-                child: Text('Login'),
-                style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                ),
               ),
             ],
           ),
