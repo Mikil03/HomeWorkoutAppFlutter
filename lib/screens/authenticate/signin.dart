@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:home_workout_app/screens/authenticate/authenticate.dart';
+import 'package:home_workout_app/screens/home/homepage.dart';
 import './auth.dart';
 
 class SignIn extends StatefulWidget {
@@ -13,6 +14,7 @@ class _SignInState extends State<SignIn> {
   final _auth = AuthService();
   String email = '';
   String password = '';
+  var _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +23,7 @@ class _SignInState extends State<SignIn> {
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 20),
         child: Form(
+          key: _formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -37,6 +40,11 @@ class _SignInState extends State<SignIn> {
                 height: 30,
               ),
               TextFormField(
+                validator: (val) {
+                  if (val!.isEmpty) {
+                    return "Enter email address!";
+                  }
+                },
                 onChanged: (value) {
                   email = value;
                 },
@@ -49,8 +57,13 @@ class _SignInState extends State<SignIn> {
                 height: 10,
               ),
               TextFormField(
+                validator: (val) {
+                  if (val!.isEmpty) {
+                    return "Enter password!";
+                  }
+                },
                 onChanged: (value) {
-                  email = value;
+                  password = value;
                 },
                 decoration: InputDecoration(
                   label: Text('Password'),
@@ -86,12 +99,32 @@ class _SignInState extends State<SignIn> {
                 ],
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () async {
+                  try {
+                    if (_formKey.currentState!.validate()) {
+                      var result =
+                          await _auth.signInEmailPassword(email, password);
+                      print(result);
+                      if (result == null) {
+                        AlertDialog(
+                          title: Text("Error"),
+                          content: Text("Enter valid credentials."),
+                        );
+                      }
+                    }
+                  } catch (e) {
+                    print(e.toString());
+                  }
+                },
                 child: Text('Login'),
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                 ),
               ),
+              // AlertDialog(
+              //   title: Text("Error"),
+              //   content: Text("Enter valid credentials."),
+              // )
             ],
           ),
         ),

@@ -18,7 +18,31 @@ class AuthService {
       return null;
     }
   }
+
+  // Register using email and password
+  Future register(email, password) async {
+    try {
+      UserCredential r = await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      return r.user;
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
   // Sign in using email and password
+  Future signInEmailPassword(String email, String password) async {
+    try {
+      var r = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      print(r.user);
+      return r.user;
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
 
   // Sign out
   Future signOut() async {

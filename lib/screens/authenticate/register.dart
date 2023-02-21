@@ -11,6 +11,7 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   final _auth = AuthService();
+  final _formKey = GlobalKey<FormState>();
   String email = '';
   String password = '';
   @override
@@ -20,6 +21,7 @@ class _RegisterState extends State<Register> {
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 20),
         child: Form(
+          key: _formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -36,6 +38,13 @@ class _RegisterState extends State<Register> {
                 height: 30,
               ),
               TextFormField(
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Field cannot be empty!";
+                  } else if (!value.contains('@')) {
+                    return "Enter valid Email ID!";
+                  }
+                },
                 onChanged: (value) {
                   email = value;
                 },
@@ -48,8 +57,13 @@ class _RegisterState extends State<Register> {
                 height: 10,
               ),
               TextFormField(
+                validator: (value) {
+                  if (value!.length < 1) {
+                    return "Password is too short.";
+                  }
+                },
                 onChanged: (value) {
-                  email = value;
+                  password = value;
                 },
                 decoration: InputDecoration(
                   label: Text('Password'),
@@ -77,7 +91,13 @@ class _RegisterState extends State<Register> {
                     ),
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      if (_formKey.currentState!.validate()) {
+                        print(email);
+                        print(password);
+                        print(_auth.register(email, password));
+                      }
+                    },
                     child: Text('Register'),
                     style: ElevatedButton.styleFrom(
                       padding:
