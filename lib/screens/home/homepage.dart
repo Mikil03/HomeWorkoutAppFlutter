@@ -21,7 +21,7 @@ class _HomeState extends State<Home> {
   //   time.day + 2,
   //   time.day + 3
   // ];
-  var date = [22, 23, 24, 25, 26, 27, 28];
+  var date = [1, 2, 3, 4, 5, 6, 7];
   var challenge = [
     ['cover_fullbody.jpg', 'UPPER BODY'],
     ['cover_lower_body.jpg', 'LOWER BODY']
