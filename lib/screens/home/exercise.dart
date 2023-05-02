@@ -47,7 +47,9 @@ class Exercise extends StatelessWidget {
         elevation: 0,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
       ),
       body: SingleChildScrollView(
@@ -99,31 +101,41 @@ class Exercise extends StatelessWidget {
             for (int i = 0; i < workouts.length; i++)
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                child: Row(
+                    const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                child: Column(
                   children: [
-                    Icon(
-                      Icons.menu,
-                      color: Colors.grey,
-                      size: 25,
-                    ),
+                    Row(children: [
+                      Icon(
+                        Icons.menu,
+                        color: Colors.grey,
+                        size: 25,
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      LottieBuilder.asset(
+                        'assets/animations/${workouts[i]}',
+                        height: 100,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        '${name[i]}\n x16',
+                        style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ]),
                     SizedBox(
-                      width: 20,
+                      height: 5,
                     ),
-                    LottieBuilder.asset(
-                      'assets/animations/${workouts[i]}',
-                      height: 100,
+                    Divider(
+                      height: 5,
+                      thickness: 1,
+                      color: Colors.grey[200],
                     ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      '${name[i]}\n x16',
-                      style: TextStyle(
-                          fontSize: 15,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w600),
-                    )
                   ],
                 ),
               ),

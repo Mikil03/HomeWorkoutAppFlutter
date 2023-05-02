@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       value: AuthService().userStream,
       initialData: null,
       child: MaterialApp(
-        home: Exercise(),
+        home: Wrapper(),
         debugShowCheckedModeBanner: false,
       ),
     );

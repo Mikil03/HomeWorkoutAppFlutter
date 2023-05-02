@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:home_workout_app/screens/authenticate/auth.dart';
 
+import 'exercise.dart';
+
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -12,23 +14,22 @@ class _HomeState extends State<Home> {
   final _auth = AuthService();
   int _currentIndex = 0;
   static var time = DateTime.now();
-  // var date = [
-  //   time.day - 3,
-  //   time.day - 2,
-  //   time.day - 1,
-  //   time.day,
-  //   time.day + 1,
-  //   time.day + 2,
-  //   time.day + 3
-  // ];
-  var date = [1, 2, 3, 4, 5, 6, 7];
+  var date = [
+    time.subtract(Duration(days: 3)).day,
+    time.subtract(Duration(days: 2)).day,
+    time.subtract(Duration(days: 1)).day,
+    time.day,
+    time.add(Duration(days: 1)).day,
+    time.add(Duration(days: 2)).day,
+    time.add(Duration(days: 3)).day
+  ];
+  // var date = [1, 2, 3, 4, 5, 6, 7];
   var challenge = [
     ['cover_fullbody.jpg', 'UPPER BODY'],
     ['cover_lower_body.jpg', 'LOWER BODY']
   ];
 
   var beginner = [
-    ['cover_abs_1.jpg', 'ABS BEGINNER'],
     ['cover_chest_1.jpg', 'CHEST BEGINNER'],
     ['cover_arm_1.jpg', 'ARM BEGINNER'],
     ['cover_shoulder_1.jpg', 'SHOULDER &\nBACK BEGINNER'],
@@ -98,10 +99,13 @@ class _HomeState extends State<Home> {
                       padding: EdgeInsets.all(10),
                       height: 170,
                       decoration: BoxDecoration(
-                          gradient: LinearGradient(colors: [
-                        Color.fromARGB(255, 113, 113, 251),
-                        Color.fromARGB(236, 60, 60, 254)
-                      ])),
+                        gradient: LinearGradient(
+                          colors: [
+                            Color.fromARGB(255, 113, 113, 251),
+                            Color.fromARGB(236, 60, 60, 254),
+                          ],
+                        ),
+                      ),
                       child: Column(
                         children: [
                           SizedBox(
@@ -217,15 +221,16 @@ class _HomeState extends State<Home> {
                                         width: 5,
                                       ),
                                       Icon(
-                                        Icons.border_color_outlined,
-                                        size: 18,
+                                        //Icons.border_color_outlined,
+                                        Icons.check_circle,
+                                        size: 20,
                                       ),
                                     ],
                                   ),
                                   Text(
                                     '0/7',
                                     style: TextStyle(
-                                      color: Colors.blue,
+                                      color: Color.fromARGB(236, 60, 60, 254),
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
                                       letterSpacing: 1.2,
@@ -283,6 +288,17 @@ class _HomeState extends State<Home> {
                   ),
                   SizedBox(
                     height: 10,
+                  ),
+                  GestureDetector(
+                    child: homePageCard1(
+                      ['cover_abs_1.jpg', 'ABS BEGINNER'],
+                    ),
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return Exercise();
+                      }));
+                    },
                   ),
                   for (var i in beginner) homePageCard1(i),
                   SizedBox(
@@ -600,19 +616,42 @@ class WeekDate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: Colors.grey[300],
-        ),
-        padding: EdgeInsets.all(10),
-        child: Text(
-          '$date',
-          style: TextStyle(
-            fontSize: 17,
-            color: Colors.grey[600],
-            fontWeight: FontWeight.w600,
+    if (date == DateTime.now().day) {
+      return Container(
+          width: 39,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: Color.fromARGB(255, 113, 131, 251),
           ),
-        ));
+          padding: EdgeInsets.all(10),
+          child: Center(
+            child: Text(
+              '$date',
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.black,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ));
+    } else {
+      return Container(
+          width: 39,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: Colors.grey[300],
+          ),
+          padding: EdgeInsets.all(10),
+          child: Center(
+            child: Text(
+              '$date',
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.grey[600],
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ));
+    }
   }
 }
