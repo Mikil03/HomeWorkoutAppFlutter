@@ -86,16 +86,7 @@ class _SignInState extends State<SignIn> {
                         fontSize: 15,
                       ),
                     ),
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Forgot Password?',
-                      style: TextStyle(
-                        color: Colors.blue,
-                      ),
-                    ),
-                  ),
+                  )
                 ],
               ),
               ElevatedButton(
@@ -104,16 +95,35 @@ class _SignInState extends State<SignIn> {
                     if (_formKey.currentState!.validate()) {
                       var result =
                           await _auth.signInEmailPassword(email, password);
-                      print(result);
+                      print("invalid ${result}");
                       if (result == null) {
-                        AlertDialog(
-                          title: Text("Error"),
-                          content: Text("Enter valid credentials."),
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content:
+                                const Text('Enter correct Email and Password'),
+                            backgroundColor: Colors.blue,
+                            behavior: SnackBarBehavior.floating,
+                            action: SnackBarAction(
+                              label: '',
+                              onPressed: () {},
+                            ),
+                          ),
                         );
                       }
                     }
                   } catch (e) {
                     print(e.toString());
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: const Text('Incorrect Email or Password'),
+                        backgroundColor: Colors.blue,
+                        behavior: SnackBarBehavior.floating,
+                        action: SnackBarAction(
+                          label: '',
+                          onPressed: () {},
+                        ),
+                      ),
+                    );
                   }
                 },
                 child: Text('Login'),
@@ -121,10 +131,6 @@ class _SignInState extends State<SignIn> {
                   padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                 ),
               ),
-              // AlertDialog(
-              //   title: Text("Error"),
-              //   content: Text("Enter valid credentials."),
-              // )
             ],
           ),
         ),

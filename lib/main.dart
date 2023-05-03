@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:home_workout_app/screens/authenticate/auth.dart';
-import 'package:home_workout_app/screens/home/exercise.dart';
 import 'package:home_workout_app/wrapper.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';

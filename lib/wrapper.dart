@@ -7,19 +7,6 @@ import 'package:home_workout_app/screens/home/homepage.dart';
 import 'package:home_workout_app/screens/home/report.dart';
 import 'package:home_workout_app/screens/home/setting.dart';
 
-// void main() => runApp(
-//       MaterialApp(
-//         initialRoute: '/',
-//         routes: {
-//           '/': (context) => Wrapper(),
-//           '/home': (context) => Home(),
-//           '/report': (context) => Report(),
-//           '/discover': (context) => Discover(),
-//           '/settings': (context) => Settings(),
-//         },
-//       ),
-//     );
-
 class Wrapper extends StatefulWidget {
   const Wrapper({Key? key}) : super(key: key);
 
@@ -54,7 +41,6 @@ class _WrapperState extends State<Wrapper> {
           selectedIconTheme: IconThemeData(color: Colors.blue[900]),
           onTap: ((value) => setState(() {
                 _currentIndex = value;
-                //Navigator.pushNamed(context, '/${navbar[value]}');
               })),
           items: [
             BottomNavigationBarItem(

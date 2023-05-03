@@ -58,7 +58,7 @@ class _RegisterState extends State<Register> {
               ),
               TextFormField(
                 validator: (value) {
-                  if (value!.length < 1) {
+                  if (value!.length < 6) {
                     return "Password is too short.";
                   }
                 },

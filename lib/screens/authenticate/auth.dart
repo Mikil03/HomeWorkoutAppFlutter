@@ -7,18 +7,6 @@ class AuthService {
     return _auth.authStateChanges();
   }
 
-  // Sign in anonymously
-  Future signInAnonymously() async {
-    try {
-      UserCredential result = await _auth.signInAnonymously();
-      User? user = result.user;
-      return user;
-    } catch (e) {
-      print(e.toString());
-      return null;
-    }
-  }
-
   // Register using email and password
   Future register(email, password) async {
     try {
